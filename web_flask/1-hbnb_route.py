@@ -15,7 +15,7 @@ def index():
 @app.route("/hbnb", strict_slashes=False)
 def index_hbnb():
     """new path to /hbnb and displays a message"""
-    return "HBNB! nilesoj"
+    return "HBNB"
 
 
 if __name__ == '__main__':
