@@ -8,18 +8,18 @@ from models.review import Review
 from models.amenity import Amenity
 import os
 
-association_table = Table("place_amenity", Base.metadata,
-                          Column("place_id", String(60),
-                                 ForeignKey("places.id"),
-                                 primary_key=True, nullable=False),
-                          Column("amenity_id", String(60),
-                                 ForeignKey("amenities.id"),
-                                 primary_key=True, nullable=False))
 
+if os.getenv("HBNB_TYPE_STORAGE") == "db":
+    association_table = Table("place_amenity", Base.metadata,
+                              Column("place_id", String(60),
+                                     ForeignKey("places.id"),
+                                     primary_key=True, nullable=False),
+                              Column("amenity_id", String(60),
+                                     ForeignKey("amenities.id"),
+                                     primary_key=True, nullable=False))
 
-class Place(BaseModel, Base):
-    """ defines the attributes to be stored in the DB """
-    if os.getenv("HBNB_TYPE_STORAGE") == "db":
+    class Place(BaseModel, Base):
+        """ defines the attributes to be stored in the DB """
         __tablename__ = 'places'
         city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
         user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
@@ -31,12 +31,14 @@ class Place(BaseModel, Base):
         price_by_night = Column(Integer, nullable=False, default=0)
         latitude = Column(Float, nullable=True)
         longitude = Column(Float, nullable=True)
-        reviews = relationship("Review", backref="place", cascade="all, delete")
+        reviews = relationship("Review", backref="place",
+                               cascade="all, delete")
         amenities = relationship("Amenity", secondary="place_amenity",
-                                   back_populates="place_amenities", viewonly=False)
+                                 back_populates="place_amenities",
+                                 viewonly=False)
+else:
+    class Place(BaseModel):
 
-   
-    else:
         """ defines the attributes to be stored in the JSON """
         city_id = ''
         user_id = ''
@@ -49,7 +51,7 @@ class Place(BaseModel, Base):
         latitude = ''
         longitude = ''
         amenity_ids = []
-        
+
         @property
         def reviews(self):
             """Get a list of all Reviews"""
@@ -67,7 +69,7 @@ class Place(BaseModel, Base):
                 if amenity.id in self.amenity_ids:
                     amenitylist.append(amenity)
             return amenitylist
-            
+
         @amenities.setter
         def amenities(self, value):
             """ Value help Amenities"""
