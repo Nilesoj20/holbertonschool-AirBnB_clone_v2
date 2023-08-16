@@ -1,20 +1,21 @@
 #!/usr/bin/python3
-""" script to start a Flask web application 
+""" script to start a Flask web application
     application is listening 0.0.0.0.0 on port 5000
     The routes to this point:
         /: root shows 'Hello HBNB'.
         /hbnb: shows 'HBNB'.
         /c/<text>: show 'C + the value <text>'.
-        /python/<text>: show 'Python + the value of <text>' 
-        /number/<n>: show '<n> is a number' 
-            only if it is an integer 
-        /number_template/<n>: show HTML page 
+        /python/<text>: show 'Python + the value of <text>'
+        /number/<n>: show '<n> is a number'
+            only if it is an integer
+        /number_template/<n>: show HTML page
             only if <n> is an integer
 """
 from flask import Flask, render_template
 from markupsafe import escape
 
 app = Flask(__name__)
+
 
 @app.route("/", strict_slashes=False)
 def index():
@@ -45,6 +46,7 @@ def hbnb_variable_2(text="is cool"):
 def hbnb_variable_entero(n):
     """using integer converter type"""
     return f"{n} is a number"
+
 
 @app.route("/number_template/<int:n>", strict_slashes=False)
 def hbnb_variable_html(n):
