@@ -49,7 +49,7 @@ def hbnb_variable_entero(n):
 @app.route("/number_template/<int:n>", strict_slashes=False)
 def hbnb_variable_html(n):
     """displays an HTML page only if n is an integer"""
-    return render_template('5-number.html', )
+    return render_template('5-number.html', numero=n)
 
 
 if __name__ == '__main__':
