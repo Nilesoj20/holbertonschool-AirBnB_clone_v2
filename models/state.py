@@ -22,14 +22,9 @@ class State(BaseModel, Base):
             @property
             def cities(self):
                 """return a list of city instances with state_id = current"""
-                from models import storage
-                return[city
-                   for city in storage.all(City).values()
-                   if city.state_id == self.id]
-                
-                # all_instances = models.storage.all(City).values()
-                # query = []
-                # for ciudad in all_instances:
-                #     if ciudad.state_id == self.id:
-                #         query.append(ciudad)
-                # return query
+                all_instances = models.storage.all(City).values()
+                query = []
+                for ciudad in all_instances:
+                    if ciudad.state_id == self.id:
+                        query.append(ciudad)
+                return query
