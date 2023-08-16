@@ -60,7 +60,7 @@ def hbnb_variable_html(n):
 def hbnb_html_even_add(n):
     """displays an HTML page only if n is an integer
         showing when the value is odd or even """
-    return render_template('6-number_odd_or_even', numero=n)
+    return render_template('6-number_odd_or_even.html', numero=n)
 
 
 if __name__ == '__main__':
