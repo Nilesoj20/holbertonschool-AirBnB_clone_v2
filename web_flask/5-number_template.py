@@ -1,6 +1,16 @@
 #!/usr/bin/python3
-""" script to start a Flask web application"""
-from config import Config
+""" script to start a Flask web application 
+    application is listening 0.0.0.0.0 on port 5000
+    The routes to this point:
+        /: root shows 'Hello HBNB'.
+        /hbnb: shows 'HBNB'.
+        /c/<text>: show 'C + the value <text>'.
+        /python/<text>: show 'Python + the value of <text>' 
+        /number/<n>: show '<n> is a number' 
+            only if it is an integer 
+        /number_template/<n>: show HTML page 
+            only if <n> is an integer
+"""
 from flask import Flask, render_template
 from markupsafe import escape
 
@@ -39,7 +49,7 @@ def hbnb_variable_entero(n):
 @app.route("/number_template/<int:n>", strict_slashes=False)
 def hbnb_variable_html(n):
     """displays an HTML page only if n is an integer"""
-    return render_template('5-number.html')
+    return render_template('5-number.html', )
 
 
 if __name__ == '__main__':
