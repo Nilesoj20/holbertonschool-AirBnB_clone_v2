@@ -7,6 +7,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from models.review import Review
 from models.amenity import Amenity
 import os
+import models
 
 
 if os.getenv("HBNB_TYPE_STORAGE") == "db":
