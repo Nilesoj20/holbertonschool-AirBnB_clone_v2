@@ -13,6 +13,7 @@ if os.getenv("HBNB_TYPE_STORAGE") == "db":
 else:
     Base = object
 
+
 class BaseModel:
     """A base class for all hbnb models"""
     if os.getenv("HBNB_TYPE_STORAGE") == "db":
@@ -20,7 +21,7 @@ class BaseModel:
         '''CHECK: DATETIME CAN"T BE NULL'''
         created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
         updated_at = Column(DateTime, default=datetime.utcnow, nullable=False)
-        
+
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
         if not kwargs:
@@ -63,7 +64,7 @@ class BaseModel:
         if dictionary.get("_sa_instance_state", None) is not None:
             del dictionary["_sa_instance_state"]
         return dictionary
-        
+
     def delete(self):
         """Delete the current instance from the storage"""
         models.storage.delete(self)
