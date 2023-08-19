@@ -3,12 +3,12 @@
 	<head>
 		<title>AirBnB clone</title>
 
-		<link rel="shortcut icon" href="images/icon.ico" >
+		<link rel="shortcut icon" href="../static/images/icon.ico" >
 
-		<link rel="stylesheet" href="styles/4-common.css"/>
-		<link rel="stylesheet" href="styles/3-header.css"/>
-		<link rel="stylesheet" href="styles/3-footer.css"/>
-		<link rel="stylesheet" href="styles/6-filters.css"/>
+		<link rel="stylesheet" href="../static/styles/4-common.css"/>
+		<link rel="stylesheet" href="../static/styles/3-header.css"/>
+		<link rel="stylesheet" href="../static/styles/3-footer.css"/>
+		<link rel="stylesheet" href="../static/styles/6-filters.css"/>
 	</head>
     <body>
 		<header>
@@ -21,11 +21,11 @@
                 <H3>States</H3>
                 <H4>&nbsp;</H4>
                     <UL class="popover">
-                    {% for state in estados.values() | sort(attribute="name") %}
-                        <LI><H2>{{ state.name }}</H2></LI>
+                    {% for estado in estados.values() | sort(attribute="name") %}
+                        <LI><H2>{{ estado.name }}</H2></LI>
                         <LI>
                             <UL>
-                            {% for city in estados.cities | sort(attribute="name") %}
+                            {% for city in estado.cities | sort(attribute="name") %}
                             <LI>{{ city.name }}</LI>
                             {% endfor %}
                             </UL>
@@ -33,7 +33,7 @@
                     {% endfor %}
                   </UL>
                 </div>
-                <DIV class="amenities">
+                <DIV class="filter_amenities">
                     <H3>Amenities</H3>
                     <H4>&nbsp;</H4>
                     <UL class="popover">
