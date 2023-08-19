@@ -15,20 +15,21 @@ def eliminar_session(self):
 
 
 @app.route("/states", strict_slashes=False)
-def estados_lista():
-    """ path to print the list of states """
-    estados = storage.all(State)
-    return render_template('9-states.html', estados=estados)
-
-
 @app.route('/states/<id>', strict_slashes=False)
 def ciudades_lista(id):
     """ path to print the list of cities """
-    estados = storage.all(State).values()
-    for x in estados:
-        if x.id == id:
-            return render_template('9-state.html', estados=x )
-    return render_template('9-states.html')
+    state = None
+    states = storage.all(State)
+
+    for estado in states.values():
+        if id in estados:
+            state = states.get(f'State.{id}')
+    contenedor = {
+            'id': id,
+            'states': states.values(),
+            'state': state
+            }
+    return render_template("9-states.html", **contenedor)
 
 
 if __name__ == '__main__':
