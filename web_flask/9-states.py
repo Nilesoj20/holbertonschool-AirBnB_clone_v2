@@ -27,7 +27,7 @@ def ciudades_lista(id):
     estados = storage.all(State).values()
     for x in estados:
         if x.id == id:
-            return render_template('9-state.html', estados=estados, )
+            return render_template('9-state.html', estados=x )
     return render_template('9-states.html')
 
 

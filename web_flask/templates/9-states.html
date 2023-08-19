@@ -4,7 +4,7 @@
         <title>HBNB</title>
     </head>
     <body>
-      {% if not id %}
+      {% if estados is mapping %}
         <h1>States</h1>
         <ul>
           {% for estado in estados | sort(attribute="name") %}
@@ -13,7 +13,7 @@
           </li>
           {% endfor %}
         </ul>
-      {% elif id %}
+      {% elif state is defined %}
         <h1>States: {{ estados.name }}</h1>
         <h3>Cities:</h3>
         <ul>
@@ -24,7 +24,7 @@
       {% else %}
         <h1>Not found!</h1>
       {% endif %}
-      </body>
+    </body>
     </html>
 
     
