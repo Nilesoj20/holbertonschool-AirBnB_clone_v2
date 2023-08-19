@@ -2,6 +2,7 @@
 """ Flask web application that lists the city """
 from flask import Flask, render_template
 from models import storage
+from models.state import State
 
 
 app = Flask(__name__)
@@ -14,19 +15,20 @@ def eliminar_session(self):
 
 
 @app.route("/states", strict_slashes=False)
-def states():
-    """route to display states"""
-    states = storage.all("State")
-    return render_template("9-states.html", state=states)
+def estados_lista():
+    """ path to print the list of states """
+    estados = storage.all(State).values()
+    return render_template('7-state.html', estados=estados)
 
 
-@app.route("/states/<id>", strict_slashes=False)
-def states_id(id):
-    """route to display cities"""
-    for state in storage.all("State").values():
-        if state.id == id:
-            return render_template("9-states.html", state=state)
-    return render_template("9-states.html")
+@app.route('/states/<id>', strict_slashes=False)
+def ciudades_lista(id):
+    """ path to print the list of cities """
+    estados = storage.all(State).values()
+    for estado in estados:
+        if estado.id == id:
+            return render_template('9-state.html', estados=estado)
+    return render_template('9-state.html')
 
 
 if __name__ == '__main__':
