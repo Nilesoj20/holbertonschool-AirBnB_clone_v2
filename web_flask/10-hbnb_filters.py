@@ -3,6 +3,7 @@
 from flask import Flask, render_template
 from models import storage
 from models.state import State
+from models.amenity import Amenity
 
 
 app = Flask(__name__)
@@ -17,8 +18,8 @@ def eliminar_session(self):
 @app.route("/hbnb_filters", strict_slashes=False)
 def hbnb_filters():
     """ path to print the list of states """
-    estados = storage.all("State")
-    amenities = storage.all("Amenity")
+    estados = storage.all(State)
+    amenities = storage.all(Amenity)
     return render_template("10-hbnb_filters.html",
                            estados=estados, amenities=amenities)
 
