@@ -4,7 +4,7 @@
         <title>HBNB</title>
     </head>
     <body>
-      {% if estados is mapping %}
+      {% if not id %}
         <h1>States</h1>
         <ul>
           {% for estado in estados | sort(attribute="name") %}
