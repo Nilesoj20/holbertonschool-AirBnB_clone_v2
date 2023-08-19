@@ -22,7 +22,7 @@ def ciudades_lista(id):
     states = storage.all(State)
 
     for estado in states.values():
-        if id in estados:
+        if id in estado:
             state = states.get(f'State.{id}')
     contenedor = {
             'id': id,
