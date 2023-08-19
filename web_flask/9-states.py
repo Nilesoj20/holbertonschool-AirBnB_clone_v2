@@ -18,7 +18,7 @@ def eliminar_session(self):
 def estados_lista():
     """ path to print the list of states """
     estados = storage.all(State).values()
-    return render_template('7-state.html', estados=estados)
+    return render_template('7-states_list.html', estados=estados)
 
 
 @app.route('/states/<id>', strict_slashes=False)
@@ -27,8 +27,8 @@ def ciudades_lista(id):
     estados = storage.all(State).values()
     for estado in estados:
         if estado.id == id:
-            return render_template('9-state.html', estados=estado)
-    return render_template('9-state.html')
+            return render_template('9-states.html', estados=estado)
+    return render_template('9-states.html')
 
 
 if __name__ == '__main__':
